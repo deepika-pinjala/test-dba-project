@@ -1,0 +1,17 @@
+name: Slack Github Action
+run-name: ${{ github.actor }} is testing out Slack Github Action 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    name: New push to repo
+    steps:
+      - name: Publish to slack channel via bot token
+        id: slack
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: "db-monitoring-pg"
+            text: "posting from a github action!"
